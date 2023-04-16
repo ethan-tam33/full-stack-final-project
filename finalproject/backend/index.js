@@ -2,6 +2,8 @@ const express = require("express");
 const user = require("./routes/user");
 const InitiateMongoServer = require("./config/db");
 
+
+//comment for testing
 // Initiate Mongo Server
 InitiateMongoServer();
 

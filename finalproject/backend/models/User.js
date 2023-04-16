@@ -12,6 +12,11 @@ const UserSchema = mongoose.Schema({
   email: {
     type: String,
     required: true,
+  // holds instances of the Post.js class in an Array
+  posts: {
+    type: Array,
+    required: true,
+  }
   }, 
 });
 

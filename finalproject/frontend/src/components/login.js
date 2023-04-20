@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const URL = 'http://localhost:3030/user';
 
-const Login = () => {
+const Login = ({ h }) => {
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();

@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Header from './header'
 
 const Main = () => {
   return (
     <div>
+        <Header />
       <h1>Rate My Courses</h1>
     <h2>Select A Course</h2>
     <select name="course" onchange="location = this.value;">

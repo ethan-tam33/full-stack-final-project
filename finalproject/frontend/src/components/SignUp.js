@@ -8,6 +8,7 @@ const URL = 'http://localhost:3030/user';
 
 const SignUp = ({ h }) => {
   const [username, setUsername] = useState();
+  const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
   const navigate = useNavigate();
@@ -15,35 +16,39 @@ const SignUp = ({ h }) => {
   const onSubmit = () => {
     console.log({
       username,
+      email,
       password
     })
-    console.log({ "username": username, 
+    console.log({ "username": username, "email": email, 
     "password": password });
 
-    axios.post(URL + '/login', { "username": username, 
+    axios.post(URL + '/signup', { "username": username, "email": email, 
         "password": password })
         .then((res) => {
             console.log("LOGGED IN!");
             console.log(res.data.token);
-            navigate("/main");
+            navigate("/login");
         })
         .catch((err) => (console.log(err.response.data)));
   }
 
   return <div className="login-page">
       <div className="login-text">
-          LOGIN
+          SIGNUP
       </div>
     <div>
       <input type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} />
     </div>
     <div>
+      <input type="text" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
+    </div>
+    <div>
       <input type="text" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
     </div>
     <button style={{ marginTop: '4px'}} onClick={onSubmit}>
-      LOGIN
+      SIGNUP
     </button>
-    <div>Don't have an account?<Link to="/home">Sign Up</Link></div>
+    <div>Already have an account?<Link to="/login">Log In</Link></div>
   </div>
 }
 

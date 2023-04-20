@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const URL = 'http://localhost:3030/user';
 
-const SignUp = ({ h }) => {
+const Login = ({ h }) => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
 
@@ -26,6 +26,7 @@ const SignUp = ({ h }) => {
             console.log("LOGGED IN!");
             console.log(res.data.token);
             navigate("/main");
+            //this needs to store the token for future use
         })
         .catch((err) => (console.log(err.response.data)));
   }
@@ -47,4 +48,4 @@ const SignUp = ({ h }) => {
   </div>
 }
 
-export default SignUp;
+export default Login;

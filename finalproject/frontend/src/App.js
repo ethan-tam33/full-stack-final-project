@@ -1,20 +1,23 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Routes, Link, useHistory, Navigate } from 'react-router-dom';
 import SignUp from './components/SignUp';
-import Main from './components/main';
-import Header from './components/header';
+import Main from './components/Main';
+import Header from './components/Header';
 import Login from './components/Login';
+import NewPost from './components/NewPost'
 
 
 function App() {
   return (
     <div>
     <Router>
+    <Header />
       <Routes>
         <Route path="/home" element={<SignUp />} />
         <Route path="/main" element={<Main />} />
         <Route path ="/login" element={<Login />} />
         <Route path ="/" element={<Login />} />
+        <Route path ="/newpost" element={<NewPost />}/>
         <Route
         path="*"
         element={<Navigate to="/login" replace />}

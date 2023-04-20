@@ -1,6 +1,9 @@
 import { useState } from "react";
 import "../css/login.css";
 import axios from 'axios';
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; 
+import Header from './header'
 
 const URL = 'http://localhost:3030/user';
 
@@ -8,6 +11,8 @@ const Login = ({ h }) => {
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+
+  const navigate = useNavigate();
 
   const onSubmit = () => {
     console.log({
@@ -20,11 +25,16 @@ const Login = ({ h }) => {
 
     axios.post(URL + '/signup', { "username": username, "email": email, 
         "password": password })
-        .then((response) => console.log(response))
+        .then((res) => {
+            console.log("LOGGED IN!");
+            console.log(res.data.token);
+            navigate("/main");
+        })
         .catch((err) => (console.log(err.response.data)));
   }
 
-  return <div className="login-page">
+  return <div>
+      <div className="login-page">
       <div className="login-text">
           SIGNUP
       </div>
@@ -40,6 +50,8 @@ const Login = ({ h }) => {
     <button style={{ marginTop: '4px'}} onClick={onSubmit}>
       SIGNUP
     </button>
+  </div>
+  <div>Don't have an account? <Link to="/main">Sign Up</Link></div>
   </div>
 }
 

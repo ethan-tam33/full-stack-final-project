@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Routes, Link, useHistory, Navig
 import Login from './components/login';
 import Main from './components/main';
 import Header from './components/header';
-
+import Class from './components/Class';
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
         path="*"
         element={<Navigate to="/" replace />}
     />
+      <Route path="/class" element={<Class />} />
       </Routes>
     </Router>
     </div>

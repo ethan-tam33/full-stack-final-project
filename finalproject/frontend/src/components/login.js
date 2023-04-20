@@ -34,6 +34,7 @@ const Login = ({ h }) => {
   }
 
   return <div>
+    <h1 text-align="center"> Rate My Courses</h1>
       <div className="login-page">
       <div className="login-text">
           SIGNUP

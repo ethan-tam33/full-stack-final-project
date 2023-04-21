@@ -75,6 +75,8 @@ export default function Class() {
             <h1>{className}</h1>
             <h2>{course}</h2>
 
+
+            {/* need to calculate rating to update average rating of class each time*/}
             <h2>Rating: {rating} / 5</h2>
 
             <br></br>

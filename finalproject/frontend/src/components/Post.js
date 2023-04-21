@@ -17,25 +17,3 @@ export default function Post ({review, username, rating, semester, professor}) {
 }
 
 
-// const Post = (props) => {
-
-//   return (
-//     <div className="post">
-//       {props.courseName};
-
-
-
-
-
-
-//     </div>
-
-
-//   );
-
-
-// }
-
-
-
-

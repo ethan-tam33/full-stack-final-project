@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import { useNavigate } from "react-router-dom"; 
 import styles from "../css/main.module.css"
 
 const Main = () => {
   // const [option, setOption] = useState('');
   
-  const classData = ["CS61A", "CS61B", "CS70", "EECS61A", "EECS16B", "CS198-99"]
+  const classData = ["CS61A", "CS61B", "CS70", "EECS16A", "EECS16B", "CS198-99"]
   
   // function siteRedirect() {
   //   var selectbox = document.getElementById("select-id");

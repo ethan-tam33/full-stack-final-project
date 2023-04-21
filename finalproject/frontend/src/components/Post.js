@@ -3,11 +3,15 @@ import React from 'react';
 
 import styles from "../css/post.module.css"
 
-export default function Post (date, comment) {
+export default function Post ({review, username, rating, semester, professor}) {
     return (
-        <div className={styles.container}>
-            <h1>{comment}</h1>
-            <p>{date}</p>
+        <div className={styles.post}>
+            <h2>Rating: {rating} / 5</h2>
+            <p> User: {username}</p>
+            <p style={{ fontWeight: 'bold' }}>Semester: {semester}</p>
+            <p style={{ fontWeight: 'bold' }}>Professor: {professor}</p>
+            <p>Review: {review}</p>
+            
         </div>
     )
 }
@@ -35,57 +39,3 @@ export default function Post (date, comment) {
 
 
 
-
-
-
-// class Post {
-//     constructor(username, stars, semester, professor, review) {
-//       this.username = username;
-//       this.stars = stars;
-//       this.semester = semester;
-//       this.professor = professor;
-//       this.review = review;
-//     }
-  
-//     // getter methods
-//     getUsername() {
-//       return this.username;
-//     }
-  
-//     getStars() {
-//       return this.stars;
-//     }
-  
-//     getSemester() {
-//       return this.semester;
-//     }
-  
-//     getProfessor() {
-//       return this.professor;
-//     }
-  
-//     getReview() {
-//       return this.review;
-//     }
-  
-//     // setter methods
-//     setUsername(username) {
-//       this.username = username;
-//     }
-  
-//     setStars(stars) {
-//       this.stars = stars;
-//     }
-  
-//     setSemester(semester) {
-//       this.semester = semester;
-//     }
-  
-//     setProfessor(professor) {
-//       this.professor = professor;
-//     }
-  
-//     setReview(review) {
-//       this.review = review;
-//     }
-//   }

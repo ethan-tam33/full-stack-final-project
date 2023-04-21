@@ -4,6 +4,8 @@ import Login from './components/Login';
 import Main from './components/Main';
 import Header from './components/Header';
 import Class from './components/Class';
+import SignUp from './components/SignUp'
+import NewPost from './components/NewPost'
 
 function App() {
   return (

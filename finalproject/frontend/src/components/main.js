@@ -9,6 +9,7 @@ const Main = () => {
   // const [option, setOption] = useState('');
   
   const classData = ["CS61A", "CS61B", "CS70", "EECS16A", "EECS16B", "CS198-99"]
+  const URL = 'http://localhost:3030/course/';
   
   // function siteRedirect() {
   //   var selectbox = document.getElementById("select-id");
@@ -20,11 +21,12 @@ const Main = () => {
     for (const myClass of classData) {
         const myBody = {
             "id": myCounter,
-            "name": myClass,
-            "stars": 0,
+            "courseName": myClass,
+            // maybe we can just delete overall rating of a course 
+            "rating": 0,
         }
         console.log(myBody);
-        axios.post("http://localhost:3030/course/newCourse", myBody)
+        axios.post(URL + "newCourse", myBody)
             .then((res) => console.log(res))
             .catch((err) => console.log(err));
         myCounter += 1;
@@ -48,6 +50,7 @@ const Main = () => {
         <option value="CS198-99">CS198-99</option>
       </select> */}
       {classData.map(className => {return (<button className={styles.classButton}><Link to={"/Class?className=" + className}>{className}</Link></button>)})}
+      {createCourses()}
     </div>
     
   {/* <button onclick="siteRedirect()">Go</button> */}

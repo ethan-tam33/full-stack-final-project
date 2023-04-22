@@ -20,7 +20,7 @@ router.post(
     const {id, courseName, rating } = req.body;
     try {
       let c = await Course.findOne({
-        courseName, rating
+        courseName
       });
       if (c) {
         return res.status(400).json({
@@ -81,7 +81,7 @@ router.post(
     const {id, courseName, rating, semester, professor, review } = req.body;
     try {
       let course = await Course.findOne({
-        courseName, rating
+        courseName
       });
       if (!course) {
         return res.status(400).json({

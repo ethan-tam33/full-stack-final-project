@@ -6,9 +6,11 @@ import axios from 'axios'
 
 export default function Class() {
     const [className, setClassName] = useState('')
-    const [allPosts, setNewPost] = useState([]);
-    const [averageRating, setAverageRating] = useState(0);
-    const [numberOfRatings, setNumberOfRatings] = useState(0);
+    const [review, setReview] = useState('')
+    const [professor, setProfessor] = useState('')
+    const [rating, setRating] = useState(0)
+    const [semester, setSemester] = useState('')
+    // const [allPosts, setNewPost] = useState([]);
 
     const location = useLocation(); 
     // const [posts, setPosts] = useState('');
@@ -21,7 +23,7 @@ export default function Class() {
     // const [mySemester, setMySemester] = useState('');
 
     // const location = useLocation();
-    // const URL = "http://localhost:3030/course"
+    const URL = "http://localhost:3030/course/"
 
     useEffect(() => {
         //gets the class from the query paramater className={CS61A}
@@ -31,8 +33,8 @@ export default function Class() {
         setClassName(name);
     }, location.search)
 
-    const updatePosts = (post) => {
-        setNewPost([post, ...allPosts])
+    // const updatePosts = (post) => {
+    //     setNewPost([post, ...allPosts])
     // const sendPostData = () => {
     //     const thisBody = {
     //         "name": className,
@@ -49,7 +51,7 @@ export default function Class() {
     //         .then((res) => console.log(res))
     //         .catch((err) => console.log(err));
     //     console.log("poopy!", thisBody);
-    }
+    //}
 
     var profs = []
     var course = "";
@@ -73,27 +75,27 @@ export default function Class() {
         course = "Introduction to Fullstack Development"
     }
 
-    function updateAverageRating(newRating, numberOfRatings) {
-        // Calculate the new average rating by averaging the current rating and the new rating
-        const newAverageRating = (averageRating * numberOfRatings + newRating) / (numberOfRatings + 1);
+    // function updateAverageRating(newRating, numberOfRatings) {
+    //     // Calculate the new average rating by averaging the current rating and the new rating
+    //     const newAverageRating = (averageRating * numberOfRatings + newRating) / (numberOfRatings + 1);
       
-        // Update the average rating state variable with the new average rating
-        setAverageRating(newAverageRating);
+    //     // Update the average rating state variable with the new average rating
+    //     setAverageRating(newAverageRating);
       
-        // You can return the new average rating if needed
-        return newAverageRating;
-    }
+    //     // You can return the new average rating if needed
+    //     return newAverageRating;
+    // }
 
-    function handleAddRating(newRating) {
-        // Update the number of ratings
-        setNumberOfRatings(numberOfRatings + 1);
+    // function handleAddRating(newRating) {
+    //     // Update the number of ratings
+    //     setNumberOfRatings(numberOfRatings + 1);
     
-        // Update the average rating using the updateAverageRating function
-        const newAverageRating = updateAverageRating(newRating, numberOfRatings);
-        setAverageRating(newAverageRating);
-      }
+    //     // Update the average rating using the updateAverageRating function
+    //     const newAverageRating = updateAverageRating(newRating, numberOfRatings);
+    //     setAverageRating(newAverageRating);
+    //   }
 
-    const posts = allPosts.filter((post) => {return post.props.course === className})
+    // const posts = allPosts.filter((post) => {return post.props.course === className})
 
     // useEffect(() => {
     //     fetch('/comments/61a')
@@ -143,39 +145,51 @@ export default function Class() {
         }
     ] //to be replaced with axios endpoint
 
+    // create courses first
+    
+    
     function getData() {
         alert(1);
         // Get review
         var textarea = document.getElementById("review");
-        var review = textarea.value;
+        setReview(textarea.value)
 
         // Get prof
         var selectProf = document.getElementById("professor");
         var selectOptionProf = selectProf.options[selectProf.selectedIndex];
-        var prof = selectOptionProf.value;
+        setProfessor(selectOptionProf.value);
 
         // Get semester
         var selectSem = document.getElementById("semester");
         var selectOptionSem = selectSem.options[selectSem.selectedIndex];
-        var sem = selectOptionSem.value;
-
-        // Get username
-        // hm, how do we do this?
-        // var selectSem = document.getElementById("semester");
-        // var selectOptionSem = selectSem.options[selectSem.selectedIndex];
-        // var sem = selectOptionSem.value;
+        setSemester(selectOptionSem.value);
 
         // Get rating
         var selectRat = document.getElementById("rating");
         var selectOptionRat = selectRat.options[selectRat.selectedIndex];
-        //var rating = selectOptionRat.value;
+        setRating(selectOptionRat.value);
       
         // Do something with the data, like display it in an alert
         //var post = <Post course={className} rating={rating} username="Bob123" semester={sem} professor={prof} review={review}></Post>
         //updatePosts(post);
-        //handleAddRating(rating);
+
+        const totalData = {
+            review: review,
+            rating: rating,
+            semester: semester,
+            professor: professor,
+        }
+
+        axios.post(URL+'/newPost', totalData)
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
        
       }
+      
     return (
         
         <div id="container">
@@ -185,7 +199,7 @@ export default function Class() {
 
 
             {/* need to calculate rating to update average rating of class each time*/}
-            <h2>Rating: {averageRating} / 5</h2>
+            {/* <h2>Rating: {averageRating} / 5</h2> */}
 
             <br></br>
 
@@ -227,9 +241,9 @@ export default function Class() {
 
             {/* we need to iterate over the posts array here to show them as it gets updated*/}
 
-            {posts}
-            {/*<Post rating="5" username="Bob123" semester="Fall 2022" professor="Denero" review="I loved this class!"></Post> */}
-            {/* <Post rating="2" username="Tara321" semester="Spring 2021" professor="Denero" review="I hated this class!" ></Post> */}
+            {/* {posts} */}
+            {/*<Post rating="5" semester="Fall 2022" professor="Denero" review="I loved this class!"></Post> */}
+            {/* <Post rating="2" semester="Spring 2021" professor="Denero" review="I hated this class!" ></Post> */}
             
             {/*I imagine we do something like:
                 - get request -> axios.get("/courses")

@@ -10,8 +10,8 @@ const CourseSchema = mongoose.Schema({
     required: true,
   },
   rating: {
-    type: String,
-    required: true,
+    type: Number,
+    required: false,
   },
   // holds instances of the Post.js class in an Array
   posts: {

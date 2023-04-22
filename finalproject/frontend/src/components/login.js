@@ -32,8 +32,9 @@ const Login = ({ h }) => {
   }
 
   return <div>
-    <h1 text-align="center"> Rate My Courses</h1>
+    
       <div className="login-page">
+      <h1> Rate My Courses</h1>
       <div className="login-text">
           LOGIN
       </div>

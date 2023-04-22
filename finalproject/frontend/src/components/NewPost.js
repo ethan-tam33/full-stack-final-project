@@ -1,12 +1,5 @@
 const NewPost = () => {
-
-    
-
-
-    
-
     return (
-
         <div>
             <label for="semester">Choose the class you want to review: </label>
             <select name="class" id="class">
@@ -16,17 +9,8 @@ const NewPost = () => {
                 <option value="EECS16A">EECS16A</option>
                 <option value="EECS16b">EECS16b</option>
                 <option value="CS198-99">CS198-99</option>
-            </select>
-
-            {
-
-                
-            }
-
-
-            
+            </select>       
         </div>
-    
 )}
 
 export default NewPost;

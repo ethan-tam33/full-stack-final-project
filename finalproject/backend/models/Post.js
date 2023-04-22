@@ -9,18 +9,10 @@ formally define what Posts should look like.
 */
 
 const PostSchema = mongoose.Schema({
-  id: {
-    type: Number,
-    required: true,
-  },
   review: {
       type: String,
       required: true,
   }, 
-  username: {
-      type: String,
-      required: true,
-  },
   rating: {
       type: Number,
       required: true,

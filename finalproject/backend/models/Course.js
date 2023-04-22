@@ -2,15 +2,15 @@ const mongoose = require("mongoose");
 
 const CourseSchema = mongoose.Schema({
   id: {
-    type: Number,
+    type: String,
     required: true,
   },
   courseName: {
     type: String,
     required: true,
   },
-  stars: {
-    type: Number,
+  rating: {
+    type: String,
     required: true,
   },
   // holds instances of the Post.js class in an Array

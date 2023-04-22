@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom'
 import Post from './Post'
+import axios from 'axios'
 
 export default function Class() {
     const [className, setClassName] = useState('')
@@ -9,9 +10,21 @@ export default function Class() {
     const [averageRating, setAverageRating] = useState(0);
     const [numberOfRatings, setNumberOfRatings] = useState(0);
 
-    const location = useLocation(); 
+    // const location = useLocation(); 
+    // const [posts, setPosts] = useState('');
+    // const [rating, setRating] = useState('');
+    
+    // //user input
+    // const [myProfessor, setMyProfessor] = useState('');
+    // const [myRating, setMyRating] = useState(0);
+    // const [myReview, setMyReview] = useState('');
+    // const [mySemester, setMySemester] = useState('');
+
+    // const location = useLocation();
+    // const URL = "http://localhost:3030/course"
 
     useEffect(() => {
+        //gets the class from the query paramater className={CS61A}
         console.log(location);
         const queryParams = new URLSearchParams(location.search);
         const name = queryParams.get('className');
@@ -20,6 +33,22 @@ export default function Class() {
 
     const updatePosts = (post) => {
         setNewPost([post, ...allPosts])
+    // const sendPostData = () => {
+    //     const thisBody = {
+    //         "name": className,
+    //         "post": {
+    //             "id": 1, //haven't figured this out yet.
+    //             "rating": myRating,
+    //             "username": "ANON",
+    //             "semeseter": mySemester,
+    //             "professor": myProfessor,
+    //             "review": myReview
+    //         }
+    //     }
+    //     axios.post("http://localhost:3030/course/newPost", thisBody)
+    //         .then((res) => console.log(res))
+    //         .catch((err) => console.log(err));
+    //     console.log("poopy!", thisBody);
     }
 
     var profs = []
@@ -95,7 +124,24 @@ export default function Class() {
     //   }
     
     // comments.map((class) => {class.map((comment) => return (<Post date={comment.date} comment={comment.comment}/>))}
-
+    const myData = [
+        {
+            "id": 1,
+            "rating": 5,
+            "username": "Bob123",
+            "semeseter": "Fall 2022",
+            "professor": "Denero",
+            "review": "I loved this class!"
+        },
+        {
+            "id": 2,
+            "rating": 2,
+            "username": "Tara321",
+            "semester": "Spring 2021",
+            "professor": "Denero",
+            "review": "I hated this class!"
+        }
+    ] //to be replaced with axios endpoint
     return (
         
         <div id="container">
@@ -148,6 +194,9 @@ export default function Class() {
 
             <h3>Your Rating: {<input id="rating" size="4"></input>} / 5</h3>
 
+            {/* // <h3>Your Rating: {<input size="4" value={myRating} onChange={e => setMyRating(e.target.value)}
+            // ></input>} / 5</h3>*/}
+
             <h3>Share your tips/review of the course here: </h3>
                 
                 
@@ -160,17 +209,28 @@ export default function Class() {
                 <option value="Fall 2022">Fall 2022</option>
                 <option value="Spring 2022">Spring 2022</option>
                 <option value="Fall 2021">Fall 2021</option>
+            {/* {<textarea id="w3review" name="w3review" rows="10" cols="50"
+            value={myReview} onChange={e => setMyReview(e.target.value)}></textarea>}
+            <br></br>
+            <br></br>
+            <label for="semester">Choose the semeseter you took the class: </label>
+            <select name="semester" id="semester" value={mySemester} onChange={e => setMySemester(e.target.value)}>
+                <option value="sp23">Spring 2023</option>
+                <option value="f22">Fall 2022</option>
+                <option value="sp22">Spring 2022</option>
+                <option value="f21">Fall 2021</option> */}
             </select>
 
             <br></br>
             <br></br>
 
             <label for="professors">Choose the professor you took the class with: </label>
-            <select name="professors" id="professors">
+            <select name="professors" id="professors" value={myProfessor} onChange={e => setMyProfessor(e.target.value)}>
                 {profs.map((p) => {return (<option value={p}>{p}</option>)})}
             </select>
             <br></br>
             <button onclick="getData()">Submit</button>
+            {/*<button onClick={sendPostData}>Submit</button>*/}
             
             <br></br>
             <br></br>
@@ -183,12 +243,19 @@ export default function Class() {
             {<Post rating="5" username="Bob123" semester="Fall 2022" professor="Denero" review="I loved this class!"></Post>}
             {<Post rating="2" username="Tara321" semester="Spring 2021" professor="Denero" review="I hated this class!" ></Post>}
             
+
+
+
+            {/*I imagine we do something like:
+                - get request -> axios.get("/courses")
+                - this would return us an array of post objects
+                - map them out
+            */}
+            {/* {myData.map((post) => {return (
+                <Post rating={post.rating} username={post.username} semester={post.semester} 
+                professor={post.professor} review={post.review}/> 
+            )})}*/}
             
-
-
-
-
-
         </div>
     )
 }

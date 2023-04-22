@@ -1,18 +1,35 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom"; 
 import styles from "../css/main.module.css"
+import axios from 'axios';
 
 const Main = () => {
   // const [option, setOption] = useState('');
   
-  const classData = ["CS61A", "CS61B", "CS70", "EECS16A", "EECS16B", "CS198-99"]
+  const classData = ["CS61A", "CS61B", "CS70", "EECS61A", "EECS16B", "CS198-99"]
   
   // function siteRedirect() {
   //   var selectbox = document.getElementById("select-id");
   //   var selectedValue = selectbox.options[selectbox.selectedIndex].value;
   //   window.location.href = selectedValue;
   // }
+  const createCourses = () => {
+    let myCounter = 0;
+    for (const myClass of classData) {
+        const myBody = {
+            "id": myCounter,
+            "name": myClass,
+            "stars": 0,
+        }
+        console.log(myBody);
+        axios.post("http://localhost:3030/course/newCourse", myBody)
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err));
+        myCounter += 1;
+    }
+  }
 
   return (
     <div>
@@ -31,6 +48,7 @@ const Main = () => {
         <option value="CS198-99">CS198-99</option>
       </select> */}
       {classData.map(className => {return (<button className={styles.classButton}><Link to={"/Class?className=" + className}>{className}</Link></button>)})}
+      <button onClick={createCourses}>hello</button>
     </div>
     
   {/* <button onclick="siteRedirect()">Go</button> */}

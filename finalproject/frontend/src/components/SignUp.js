@@ -14,35 +14,34 @@ const SignUp = ({ h }) => {
     email: "",
     password: "",
   });
-  
+
   const navigate = useNavigate();
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const [records, setRecords] = useState([]);
-  console.log("Being called!")
-
 
   const handleSubmit = (e) => {
-      if (!regex.test(signUpValues.email)) {
-        console.log("Invalid email.");
+    const currUsername = signUpValues.username;
+    const currEmail = signUpValues.email;
+    const currPassword = signUpValues.password;
+
+      if (!regex.test(currEmail) || currPassword.length < 6 || currUsername.length < 6) {
+        alert("Invalid email, username, or password. Please try again")
       } else {
-        setRecords([...records, signUpValues])
-        console.log({ "username": signUpValues.username, "email": signUpValues.email, 
-        "password": signUpValues.password });
+        console.log({ "username": currUsername, "email": currEmail, 
+        "password": currPassword });
     
-        axios.post(URL + '/signup', { "username": signUpValues.username, "email": signUpValues.email, 
-            "password": signUpValues.password })
-            .then((res) => {
+        axios.post(
+          URL + '/signup', { "username": currUsername, "email": currEmail, "password": currPassword })
+             .then((res) => {
                 console.log("LOGGED IN!");
                 console.log(res.data.token);
                 navigate("/login");
-            })
-            .catch((err) => (console.log(err.response.data)));
+             })
+             .catch((err) => (console.log(err.response.data)));
         
         setSignUpValues({
-            fullName: "",
-            address: "",
-            number: "",
-            occupation: ""
+            username: "",
+            email: "",
+            password: "",
         });
       }
     }
@@ -77,7 +76,7 @@ const SignUp = ({ h }) => {
           }
         ></input>
         <br />
-        <button type="submit" style={{ marginTop: '4px'}}>SIGNUP</button>
+        <button type="submit" style={{ marginTop: '4px', marginLeft: '40px'}}>SIGNUP</button>
       </form>
     <div>Already have an account?<Link to="/login">Log In</Link></div>
   </div>

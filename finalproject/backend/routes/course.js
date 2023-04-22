@@ -6,22 +6,6 @@ const router = express.Router();
 const auth = require("./../middleware/auth");
 const Course = require("../models/Course");
 const Post = require("../models/Post");
-// const { default: Post } = require("../../frontend/src/components/Post");
-
-
-
-//assume we get a valid request for now
-/*New Posts will be in format:
-req = {
-    "body": {
-        "id": 1,
-        "post": {
-            The actual post object
-        }
-    }
-} 
-This route simply creates course objects, so I can use them later.
-*/
 
 router.post(
   "/newCourse",
@@ -146,10 +130,8 @@ router.post(
   }
 );
 
-// idk why this isn't working
 router.get("/me", auth, async (req, res) => {
   try {
-    // request.user is getting fetched from Middleware after token authentication
     const course = await Course.find();
     res.json(course);
   } catch (e) {

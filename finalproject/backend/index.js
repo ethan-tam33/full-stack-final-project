@@ -1,5 +1,6 @@
 const express = require("express");
 const user = require("./routes/user");
+const course = require("./routes/course");
 const InitiateMongoServer = require("./config/db");
 
 
@@ -30,6 +31,7 @@ app.get("/", (req, res) => {
 //  * Method - *
 //  */
  app.use("/user", user);
+ app.use("/course", course);
 
 
 app.listen(PORT, (req, res) => {

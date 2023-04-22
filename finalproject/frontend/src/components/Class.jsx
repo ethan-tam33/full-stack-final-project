@@ -149,33 +149,37 @@ export default function Class() {
     
     
     function getData() {
-        alert(1);
         // Get review
+        
         var textarea = document.getElementById("review");
         setReview(textarea.value)
+        alert(textarea.value)
 
         // Get prof
         var selectProf = document.getElementById("professor");
         var selectOptionProf = selectProf.options[selectProf.selectedIndex];
         setProfessor(selectOptionProf.value);
+        alert(selectOptionProf.value)
 
         // Get semester
         var selectSem = document.getElementById("semester");
         var selectOptionSem = selectSem.options[selectSem.selectedIndex];
         setSemester(selectOptionSem.value);
+        alert(selectOptionSem.value)
 
         // Get rating
         var selectRat = document.getElementById("rating");
-        var selectOptionRat = selectRat.options[selectRat.selectedIndex];
-        setRating(selectOptionRat.value);
-      
-        // Do something with the data, like display it in an alert
-        //var post = <Post course={className} rating={rating} username="Bob123" semester={sem} professor={prof} review={review}></Post>
-        //updatePosts(post);
+        setRating(selectRat.value);
+        alert(selectRat.value);
 
+        var num = String(Math.floor(Math.random() * Number.MAX_VALUE));
+        alert(num)
+        
         const totalData = {
+            id: num,
+            courseName: className,
             review: review,
-            rating: rating,
+            rating: parseInt(rating),
             semester: semester,
             professor: professor,
         }
@@ -185,11 +189,10 @@ export default function Class() {
                 console.log(response.data);
             })
             .catch(error => {
-                console.error(error);
+                console.error(error.response.data);
             });
-       
       }
-      
+
     return (
         
         <div id="container">
@@ -226,7 +229,7 @@ export default function Class() {
             <br></br>
 
             <label for="professors">Choose the professor you took the class with: </label>
-            <select name="professors" id="professors">
+            <select name="professor" id="professor">
                 {profs.map((p) => {return (<option value={p}>{p}</option>)})}
             </select>
             {/* value={myProfessor} onChange={e => setMyProfessor(e.target.value)*/}

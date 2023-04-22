@@ -10,26 +10,28 @@ const SignUp = ({ h }) => {
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-
   const navigate = useNavigate();
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const onSubmit = () => {
-    console.log({
-      username,
-      email,
-      password
-    })
-    console.log({ "username": username, "email": email, 
-    "password": password });
+    // Validates if an email is valid.
+    if (!regex.test(email)) {
+      console.log("Invalid email.");
+    } else {
 
-    axios.post(URL + '/signup', { "username": username, "email": email, 
-        "password": password })
-        .then((res) => {
-            console.log("LOGGED IN!");
-            console.log(res.data.token);
-            navigate("/login");
-        })
-        .catch((err) => (console.log(err.response.data)));
+      console.log({ "username": username, "email": email, 
+      "password": password });
+  
+      axios.post(URL + '/signup', { "username": username, "email": email, 
+          "password": password })
+          .then((res) => {
+              console.log("LOGGED IN!");
+              console.log(res.data.token);
+              navigate("/login");
+          })
+          .catch((err) => (console.log(err.response.data)));
+      
+    }
   }
 
   return <div className="login-page">

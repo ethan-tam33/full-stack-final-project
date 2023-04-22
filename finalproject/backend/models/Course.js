@@ -5,7 +5,7 @@ const CourseSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  name: {
+  courseName: {
     type: String,
     required: true,
   },
@@ -17,6 +17,7 @@ const CourseSchema = mongoose.Schema({
   posts: {
     type: Array,
     default: [],
+    required: true,
   }, 
 });
 

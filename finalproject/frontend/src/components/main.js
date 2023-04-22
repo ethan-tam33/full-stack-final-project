@@ -8,7 +8,7 @@ import axios from 'axios';
 const Main = () => {
   // const [option, setOption] = useState('');
   
-  const classData = ["CS61A", "CS61B", "CS70", "EECS61A", "EECS16B", "CS198-99"]
+  const classData = ["CS61A", "CS61B", "CS70", "EECS16A", "EECS16B", "CS198-99"]
   
   // function siteRedirect() {
   //   var selectbox = document.getElementById("select-id");
@@ -48,7 +48,6 @@ const Main = () => {
         <option value="CS198-99">CS198-99</option>
       </select> */}
       {classData.map(className => {return (<button className={styles.classButton}><Link to={"/Class?className=" + className}>{className}</Link></button>)})}
-      <button onClick={createCourses}>hello</button>
     </div>
     
   {/* <button onclick="siteRedirect()">Go</button> */}

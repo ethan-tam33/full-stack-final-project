@@ -10,7 +10,7 @@ export default function Class() {
     const [averageRating, setAverageRating] = useState(0);
     const [numberOfRatings, setNumberOfRatings] = useState(0);
 
-    // const location = useLocation(); 
+    const location = useLocation(); 
     // const [posts, setPosts] = useState('');
     // const [rating, setRating] = useState('');
     
@@ -25,7 +25,7 @@ export default function Class() {
 
     useEffect(() => {
         //gets the class from the query paramater className={CS61A}
-        console.log(location);
+        //console.log(location);
         const queryParams = new URLSearchParams(location.search);
         const name = queryParams.get('className');
         setClassName(name);
@@ -142,46 +142,43 @@ export default function Class() {
             "review": "I hated this class!"
         }
     ] //to be replaced with axios endpoint
+
+    function getData() {
+        alert(1);
+        // Get review
+        var textarea = document.getElementById("review");
+        var review = textarea.value;
+
+        // Get prof
+        var selectProf = document.getElementById("professor");
+        var selectOptionProf = selectProf.options[selectProf.selectedIndex];
+        var prof = selectOptionProf.value;
+
+        // Get semester
+        var selectSem = document.getElementById("semester");
+        var selectOptionSem = selectSem.options[selectSem.selectedIndex];
+        var sem = selectOptionSem.value;
+
+        // Get username
+        // hm, how do we do this?
+        // var selectSem = document.getElementById("semester");
+        // var selectOptionSem = selectSem.options[selectSem.selectedIndex];
+        // var sem = selectOptionSem.value;
+
+        // Get rating
+        var selectRat = document.getElementById("rating");
+        var selectOptionRat = selectRat.options[selectRat.selectedIndex];
+        //var rating = selectOptionRat.value;
+      
+        // Do something with the data, like display it in an alert
+        //var post = <Post course={className} rating={rating} username="Bob123" semester={sem} professor={prof} review={review}></Post>
+        //updatePosts(post);
+        //handleAddRating(rating);
+       
+      }
     return (
         
         <div id="container">
-            {
-                function getData() {
-                    // Get review
-                    var textarea = document.getElementById("review");
-                    var review = textarea.value;
-
-                    // Get prof
-                    var selectProf = document.getElementById("professor");
-                    var selectOptionProf = selectProf.options[selectProf.selectedIndex];
-                    var prof = selectOptionProf.value;
-
-                    // Get semester
-                    var selectSem = document.getElementById("semester");
-                    var selectOptionSem = selectSem.options[selectSem.selectedIndex];
-                    var sem = selectOptionSem.value;
-
-                    // Get username
-                    // hm, how do we do this?
-                    // var selectSem = document.getElementById("semester");
-                    // var selectOptionSem = selectSem.options[selectSem.selectedIndex];
-                    // var sem = selectOptionSem.value;
-
-                    // Get rating
-                    var selectRat = document.getElementById("rating");
-                    var selectOptionRat = selectRat.options[selectRat.selectedIndex];
-                    var rating = selectOptionRat.value;
-                  
-                    // Do something with the data, like display it in an alert
-                    var post = <Post course={className} rating={rating} username="Bob123" semester={sem} professor={prof} review={review}></Post>
-                    updatePosts(post);
-                    handleAddRating(rating);
-
-                    console.log(1);
-                   
-                  }
-
-            }
 
             <h1>{className}</h1>
             <h2>{course}</h2>
@@ -215,11 +212,12 @@ export default function Class() {
             <br></br>
 
             <label for="professors">Choose the professor you took the class with: </label>
-            <select name="professors" id="professors" value={myProfessor} onChange={e => setMyProfessor(e.target.value)}>
+            <select name="professors" id="professors">
                 {profs.map((p) => {return (<option value={p}>{p}</option>)})}
             </select>
+            {/* value={myProfessor} onChange={e => setMyProfessor(e.target.value)*/}
             <br></br>
-            <button onclick="getData()">Submit</button>
+            <button onClick={getData}>Submit</button>
             {/*<button onClick={sendPostData}>Submit</button>*/}
             
             <br></br>
@@ -230,8 +228,8 @@ export default function Class() {
             {/* we need to iterate over the posts array here to show them as it gets updated*/}
 
             {posts}
-            {<Post rating="5" username="Bob123" semester="Fall 2022" professor="Denero" review="I loved this class!"></Post>}
-            {<Post rating="2" username="Tara321" semester="Spring 2021" professor="Denero" review="I hated this class!" ></Post>}
+            {/*<Post rating="5" username="Bob123" semester="Fall 2022" professor="Denero" review="I loved this class!"></Post> */}
+            {/* <Post rating="2" username="Tara321" semester="Spring 2021" professor="Denero" review="I hated this class!" ></Post> */}
             
             {/*I imagine we do something like:
                 - get request -> axios.get("/courses")

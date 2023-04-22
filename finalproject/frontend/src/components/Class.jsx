@@ -38,7 +38,7 @@ export default function Class() {
                 "review": myReview
             }
         }
-        axios.post(URL + "/newPost", thisBody)
+        axios.post("http://localhost:3030/course/newPost", thisBody)
             .then((res) => console.log(res))
             .catch((err) => console.log(err));
         console.log("poopy!", thisBody);

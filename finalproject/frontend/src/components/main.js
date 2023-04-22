@@ -23,6 +23,7 @@ const Main = () => {
             "name": myClass,
             "stars": 0,
         }
+        console.log(myBody);
         axios.post("http://localhost:3030/course/newCourse", myBody)
             .then((res) => console.log(res))
             .catch((err) => console.log(err));
@@ -47,7 +48,7 @@ const Main = () => {
         <option value="CS198-99">CS198-99</option>
       </select> */}
       {classData.map(className => {return (<button className={styles.classButton}><Link to={"/Class?className=" + className}>{className}</Link></button>)})}
-      <button>hello</button>
+      <button onClick={createCourses}>hello</button>
     </div>
     
   {/* <button onclick="siteRedirect()">Go</button> */}

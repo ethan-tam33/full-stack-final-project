@@ -1,4 +1,5 @@
-const router = require("./user");
+const express = require("express");
+const router = express.Router();
 const { check, validationResult } = require("express-validator");
 const Course = require("../models/Course");
 
@@ -26,7 +27,7 @@ router.post("/newCourse",
             const { id, name, stars } = req.body;
             try {
                 let course = await Course.findOne({
-                  id
+                  "name": name
                 });
                 if (course) {
                   return res.status(400).json({
@@ -35,9 +36,9 @@ router.post("/newCourse",
                 }
           
                 course = new Course({
-                  id,
-                  name,
-                  stars,
+                  "id": id,
+                  "name": name,
+                  "stars": stars,
                 });
 
                 course.save();

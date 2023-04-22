@@ -209,16 +209,6 @@ export default function Class() {
                 <option value="Fall 2022">Fall 2022</option>
                 <option value="Spring 2022">Spring 2022</option>
                 <option value="Fall 2021">Fall 2021</option>
-            {/* {<textarea id="w3review" name="w3review" rows="10" cols="50"
-            value={myReview} onChange={e => setMyReview(e.target.value)}></textarea>}
-            <br></br>
-            <br></br>
-            <label for="semester">Choose the semeseter you took the class: </label>
-            <select name="semester" id="semester" value={mySemester} onChange={e => setMySemester(e.target.value)}>
-                <option value="sp23">Spring 2023</option>
-                <option value="f22">Fall 2022</option>
-                <option value="sp22">Spring 2022</option>
-                <option value="f21">Fall 2021</option> */}
             </select>
 
             <br></br>
@@ -243,9 +233,6 @@ export default function Class() {
             {<Post rating="5" username="Bob123" semester="Fall 2022" professor="Denero" review="I loved this class!"></Post>}
             {<Post rating="2" username="Tara321" semester="Spring 2021" professor="Denero" review="I hated this class!" ></Post>}
             
-
-
-
             {/*I imagine we do something like:
                 - get request -> axios.get("/courses")
                 - this would return us an array of post objects

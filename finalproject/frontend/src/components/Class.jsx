@@ -153,27 +153,22 @@ export default function Class() {
         
         var textarea = document.getElementById("review");
         setReview(textarea.value)
-        alert(textarea.value)
 
         // Get prof
         var selectProf = document.getElementById("professor");
         var selectOptionProf = selectProf.options[selectProf.selectedIndex];
         setProfessor(selectOptionProf.value);
-        alert(selectOptionProf.value)
 
         // Get semester
         var selectSem = document.getElementById("semester");
         var selectOptionSem = selectSem.options[selectSem.selectedIndex];
         setSemester(selectOptionSem.value);
-        alert(selectOptionSem.value)
 
         // Get rating
         var selectRat = document.getElementById("rating");
         setRating(selectRat.value);
-        alert(selectRat.value);
 
-        var num = String(Math.floor(Math.random() * Number.MAX_VALUE));
-        alert(num)
+        var num = String(Math.floor(Math.random() * Number.MAX_SAFE_INTEGER));
         
         const totalData = {
             id: num,

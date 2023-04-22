@@ -150,7 +150,7 @@ router.post(
 router.get("/me", auth, async (req, res) => {
   try {
     // request.user is getting fetched from Middleware after token authentication
-    const course = await Course.findById(req.course.id);
+    const course = await Course.find();
     res.json(course);
   } catch (e) {
     res.send({ message: "Error in Fetching Course" });

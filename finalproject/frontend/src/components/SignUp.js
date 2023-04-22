@@ -6,50 +6,81 @@ import { useNavigate } from "react-router-dom";
 
 const URL = 'http://localhost:3030/user';
 
+
 const SignUp = ({ h }) => {
-  const [username, setUsername] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+
+  const [signUpValues, setSignUpValues] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
 
   const navigate = useNavigate();
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  const onSubmit = () => {
-    console.log({
-      username,
-      email,
-      password
-    })
-    console.log({ "username": username, "email": email, 
-    "password": password });
+  const handleSubmit = (e) => {
+    const currUsername = signUpValues.username;
+    const currEmail = signUpValues.email;
+    const currPassword = signUpValues.password;
 
-    axios.post(URL + '/signup', { "username": username, "email": email, 
-        "password": password })
-        .then((res) => {
-            console.log("LOGGED IN!");
-            console.log(res.data.token);
-            navigate("/login");
-        })
-        .catch((err) => (console.log(err.response.data)));
-  }
+      if (!regex.test(currEmail) || currPassword.length < 6 || currUsername.length < 6) {
+        alert("Invalid email, username, or password. Please try again")
+      } else {
+        console.log({ "username": currUsername, "email": currEmail, 
+        "password": currPassword });
+    
+        axios.post(
+          URL + '/signup', { "username": currUsername, "email": currEmail, "password": currPassword })
+             .then((res) => {
+                console.log("LOGGED IN!");
+                console.log(res.data.token);
+                navigate("/login");
+             })
+             .catch((err) => (console.log(err.response.data)));
+        
+        setSignUpValues({
+            username: "",
+            email: "",
+            password: "",
+        });
+      }
+    }
 
-  return <div className="login-page">
+  return (
+   <div className="login-page">
       <div className="login-text">
           SIGNUP
       </div>
-    <div>
-      <input type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} />
-    </div>
-    <div>
-      <input type="text" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
-    </div>
-    <div>
-      <input type="text" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
-    </div>
-    <button style={{ marginTop: '4px'}} onClick={onSubmit}>
-      SIGNUP
-    </button>
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <input
+          placeholder="username"
+          value={signUpValues.username}
+          onChange={(e) =>
+            setSignUpValues({ ...signUpValues, username: e.target.value })
+          }
+        ></input>
+        <br />
+        <input
+          placeholder="email"
+          value={signUpValues.email}
+          onChange={(e) =>
+            setSignUpValues({ ...signUpValues, email: e.target.value })
+          }
+        ></input>
+        <br />
+        <input
+          placeholder="password"
+          value={signUpValues.password}
+          onChange={(e) =>
+            setSignUpValues({ ...signUpValues, password: e.target.value })
+          }
+        ></input>
+        <br />
+        <button type="submit" style={{ marginTop: '4px', marginLeft: '40px'}}>SIGNUP</button>
+      </form>
     <div>Already have an account?<Link to="/login">Log In</Link></div>
   </div>
+  )
 }
 
 export default SignUp;

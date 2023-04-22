@@ -22,6 +22,8 @@ const Login = ({ h }) => {
     console.log({ "username": currUsername, 
     "password": currPassword });
 
+    console.log("Working!");
+
     axios.post(
       URL + '/login', { "username": currUsername, "password": currPassword})
          .then((res) => {

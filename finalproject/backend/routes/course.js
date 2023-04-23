@@ -130,6 +130,31 @@ router.post(
   }
 );
 
+router.post("/posts",
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        errors: errors.array(),
+      });
+    }
+
+    const {courseName} = req.body.courseName;
+    try {
+      let course = await Course.findOne({
+        courseName
+      });
+      if (!course) {
+        return res.status(500).send("Not a Valid Course");
+      }
+      res.status(200).json({ "posts": course.posts });
+    } catch (err) {
+      console.log(err.message);
+      res.status(500).send("Error in Fetching Posts");
+  }
+}
+) 
+
 router.get("/me", auth, async (req, res) => {
   try {
     const course = await Course.find();

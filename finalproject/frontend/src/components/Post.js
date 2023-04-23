@@ -2,14 +2,14 @@
 
 import styles from "../css/post.module.css"
 
-export default function Post ({props}) {
+export default function Post ({p}) {
     return (
         <div className={styles.post}>
-            <h2>Rating: {props.rating} / 5</h2>
+            <h2>Rating: {p.rating} / 5</h2>
             {/* <p> User: {props.username}</p> */}
-            <p style={{ fontWeight: 'bold' }}>Semester: {props.semester}</p>
-            <p style={{ fontWeight: 'bold' }}>Professor: {props.professor}</p>
-            <p>Review: {props.review}</p>
+            <p style={{ fontWeight: 'bold' }}>Semester: {p.semester}</p>
+            <p style={{ fontWeight: 'bold' }}>Professor: {p.professor}</p>
+            <p>Review: {p.review}</p>
             
         </div>
     )

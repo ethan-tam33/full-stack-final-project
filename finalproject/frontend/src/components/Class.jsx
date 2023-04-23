@@ -10,7 +10,16 @@ export default function Class() {
     const [professor, setProfessor] = useState('')
     const [rating, setRating] = useState(0)
     const [semester, setSemester] = useState('')
-    // const [allPosts, setNewPost] = useState([]);
+    const [allPosts, setNewPost] = useState([
+        {
+            "id": 0,
+            "rating": 0,
+            "username": "DUMMY",
+            "semeseter": "DUMMY",
+            "professor": "DUMMY",
+            "review": "DUMMY"
+        }
+    ]);
 
     const location = useLocation(); 
     // const [posts, setPosts] = useState('');
@@ -106,10 +115,6 @@ export default function Class() {
     //     fetch('/rating/' + className)
     //     .then((data) => setRating(data));
     // }, [className])
-
-    // when we click post button
-    // first: make a post request (adds the new data we just got)
-    // second: make a get request (grabs the new data)
     
 
     // const comments  = {
@@ -145,9 +150,15 @@ export default function Class() {
         }
     ] //to be replaced with axios endpoint
 
+    axios.post("http://localhost:3030/course/posts", 
+        { "courseName": className })
+            .then((res) => {
+                setNewPost(res.data.posts)
+            })
+            .catch((err) => console.log(err))
+
     // create courses first
-    
-    
+
     function getData() {
         // Get review
         
@@ -249,11 +260,7 @@ export default function Class() {
                 - this would return us an array of post objects
                 - map them out
             */}
-            {/* {myData.map((post) => {return (
-                <Post rating={post.rating} username={post.username} semester={post.semester} 
-                professor={post.professor} review={post.review}/> 
-            )})}*/}
-            
+            {allPosts.map((post) => {return (<Post p={post}/> )})}
         </div>
     )
 }

@@ -7,3 +7,6 @@ const req = {
 if (!req.body.id) {
     console.log(5)
 }
+[1].map((bro) => {
+    console.log(bro);
+});

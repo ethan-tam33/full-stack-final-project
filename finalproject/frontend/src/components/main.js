@@ -20,7 +20,7 @@ const Main = () => {
     let myCounter = 0;
     for (const myClass of classData) {
         const myBody = {
-            "id": myCounter,
+            "id": myCounter.toString(),
             "courseName": myClass,
             // maybe we can just delete overall rating of a course 
             "rating": 0,

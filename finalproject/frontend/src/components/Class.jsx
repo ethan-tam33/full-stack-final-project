@@ -188,6 +188,7 @@ export default function Class() {
             .catch(error => {
                 console.error(error.response.data);
             });
+            console.log(totalData);
       }
 
     //   router.get("/me", auth, async (req, res) => {

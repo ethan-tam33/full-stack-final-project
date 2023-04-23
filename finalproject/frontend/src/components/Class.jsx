@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom'
 import Post from './Post'
 import axios from 'axios'
+// import styles from "../css/main.module.css"
 
 export default function Class() {
     const [className, setClassName] = useState('')
@@ -205,19 +206,13 @@ export default function Class() {
         axios.get(URL+'/me')
             .then(response => {
                 console.log(response.data);
-                let allPosts = response.data
-                
-                for (const course of allPosts) {
+                let data = response.data
+                for (const course of data) {
                     if (course.courseName === className) {
-                        console.log(course.courseName);
                         for (const post of course.posts) {
                             console.log(post);
                             const {rating, semester, review, professor} = post;
-                            console.log(rating);
-                            console.log(semester);
-                            console.log(review);
-                            console.log(professor);
-                            let p = <Post rating={parseInt(rating)} semester={semester} review={review} professor={professor}></Post>
+                            let p = <Post rating={rating} semester={semester} review={review} professor={professor}></Post>
                             updatePosts(p);
                         }
                     }
@@ -227,13 +222,14 @@ export default function Class() {
                     console.log(error);
                 });
         }
-
     
-            
+    //getClass();
 
         //allPosts = Object.keys(allPosts);
         //console.log("slay")
         //console.log(allPosts);
+
+    const posts = allPosts.map((post) => post);
     
 
     return (
@@ -278,14 +274,15 @@ export default function Class() {
             {/* value={myProfessor} onChange={e => setMyProfessor(e.target.value)*/}
             <br></br>
             <button onClick={getData}>Submit</button>
+            
             {/*<button onClick={sendPostData}>Submit</button>*/}
             
             <br></br>
             <br></br>
             <br></br>
             <br></br>
-            <button onClick={getClass}>test</button>
-            {allPosts}
+            <button onClick={getClass}>Load</button>
+            {posts}
        
             {/* we need to iterate over the posts array here to show them as it gets updated*/}
 

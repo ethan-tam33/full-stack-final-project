@@ -20,7 +20,7 @@ function App() {
         <Route path ="/newpost" element={<NewPost />}/>
         <Route
         path="*"
-        element={<Navigate to="/login" replace />}
+        element={<Navigate to="/main" replace />}
     />
       <Route path="/class" element={<Class />} />
       </Routes>

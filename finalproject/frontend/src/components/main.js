@@ -33,6 +33,8 @@ const Main = () => {
     }
   }
 
+  createCourses();
+
   return (
     <div>
       <h1>Rate My Courses</h1>
@@ -50,7 +52,6 @@ const Main = () => {
         <option value="CS198-99">CS198-99</option>
       </select> */}
       {classData.map(className => {return (<button className={styles.classButton}><Link to={"/Class?className=" + className}>{className}</Link></button>)})}
-      {createCourses()}
     </div>
     
   {/* <button onclick="siteRedirect()">Go</button> */}

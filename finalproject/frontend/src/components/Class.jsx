@@ -10,7 +10,7 @@ export default function Class() {
     const [professor, setProfessor] = useState('')
     const [rating, setRating] = useState(0)
     const [semester, setSemester] = useState('')
-    // const [allPosts, setNewPost] = useState([]);
+    const [allPosts, setNewPost] = useState([]);
 
     const location = useLocation(); 
     // const [posts, setPosts] = useState('');
@@ -33,8 +33,10 @@ export default function Class() {
         setClassName(name);
     }, location.search)
 
-    // const updatePosts = (post) => {
-    //     setNewPost([post, ...allPosts])
+    const updatePosts = (post) => {
+        setNewPost([post, ...allPosts])
+    }
+
     // const sendPostData = () => {
     //     const thisBody = {
     //         "name": className,
@@ -149,8 +151,8 @@ export default function Class() {
     
     
     function getData() {
+
         // Get review
-        
         var textarea = document.getElementById("review");
         setReview(textarea.value)
 
@@ -187,6 +189,51 @@ export default function Class() {
                 console.error(error.response.data);
             });
       }
+
+    //   router.get("/me", auth, async (req, res) => {
+    //     try {
+    //       const course = await Course.find();
+    //       res.json(course);
+    //     } catch (e) {
+    //       res.send({ message: "Error in Fetching Course" });
+    //     }
+    //   });
+
+
+    function getClass() {
+        axios.get(URL+'/me')
+            .then(response => {
+                console.log(response.data);
+                let allPosts = response.data
+                
+                for (const course of allPosts) {
+                    if (course.courseName === className) {
+                        console.log(course.courseName);
+                        for (const post of course.posts) {
+                            console.log(post);
+                            const {rating, semester, review, professor} = post;
+                            console.log(rating);
+                            console.log(semester);
+                            console.log(review);
+                            console.log(professor);
+                            let p = <Post rating={parseInt(rating)} semester={semester} review={review} professor={professor}></Post>
+                            updatePosts(p);
+                        }
+                    }
+                }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+
+    
+            
+
+        //allPosts = Object.keys(allPosts);
+        //console.log("slay")
+        //console.log(allPosts);
+    
 
     return (
         
@@ -236,7 +283,9 @@ export default function Class() {
             <br></br>
             <br></br>
             <br></br>
-
+            <button onClick={getClass}>test</button>
+            {allPosts}
+       
             {/* we need to iterate over the posts array here to show them as it gets updated*/}
 
             {/* {posts} */}

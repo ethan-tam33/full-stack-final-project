@@ -186,6 +186,7 @@ export default function Class() {
             .catch(error => {
                 console.error(error.response.data);
             });
+            console.log(totalData);
       }
 
     return (

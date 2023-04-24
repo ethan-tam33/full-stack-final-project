@@ -33,12 +33,14 @@ const Main = () => {
     }
   }
 
-  return (
-    <div>
-      <h1>Rate My Courses</h1>
-    <h2>Select A Course</h2>
+  createCourses();
 
-    <div id="select-id">
+  return (
+    <div className={styles.classAll}>
+      <h1 className={styles.classH1}>Rate My Courses</h1>
+      <h2 className={styles.classH2}>Select A Course</h2>
+
+    <div className={styles.classDiv} id="select-id">
       {/* <select name="course">
       <option value="">Select a course</option>
       <option value="CS61A.html" onselect={() => console.log("Test 2")}>CS61A</option>
@@ -49,8 +51,7 @@ const Main = () => {
         <option value="EECS16B">EECS16B</option>
         <option value="CS198-99">CS198-99</option>
       </select> */}
-      {classData.map(className => {return (<button className={styles.classButton}><Link to={"/Class?className=" + className}>{className}</Link></button>)})}
-      {createCourses()}
+      {classData.map(className => {return (<Link className={styles.classLink} to={"/Class?className=" + className}>{className}</Link>)})}
     </div>
     
   {/* <button onclick="siteRedirect()">Go</button> */}

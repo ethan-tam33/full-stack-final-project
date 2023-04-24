@@ -130,6 +130,7 @@ router.post(
   }
 );
 
+<<<<<<< HEAD
 router.post("/posts",
   async (req, res) => {
     const errors = validationResult(req);
@@ -156,6 +157,9 @@ router.post("/posts",
 ) 
 
 router.get("/me", auth, async (req, res) => {
+=======
+router.get("/me", async (req, res) => {
+>>>>>>> main
   try {
     const course = await Course.find();
     res.json(course);
@@ -163,5 +167,6 @@ router.get("/me", auth, async (req, res) => {
     res.send({ message: "Error in Fetching Course" });
   }
 });
+
 
 module.exports = router;

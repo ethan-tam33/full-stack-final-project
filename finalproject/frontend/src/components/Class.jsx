@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom'
 import Post from './Post'
 import axios from 'axios'
+// import styles from "../css/main.module.css"
 
 export default function Class() {
     const [className, setClassName] = useState('')
@@ -10,6 +11,7 @@ export default function Class() {
     const [professor, setProfessor] = useState('')
     const [rating, setRating] = useState(0)
     const [semester, setSemester] = useState('')
+<<<<<<< HEAD
     const [allPosts, setNewPost] = useState([
         {
             "id": 0,
@@ -20,6 +22,9 @@ export default function Class() {
             "review": "DUMMY"
         }
     ]);
+=======
+    const [allPosts, setNewPost] = useState([]);
+>>>>>>> main
 
     const location = useLocation(); 
     // const [posts, setPosts] = useState('');
@@ -42,8 +47,10 @@ export default function Class() {
         setClassName(name);
     }, location.search)
 
-    // const updatePosts = (post) => {
-    //     setNewPost([post, ...allPosts])
+    const updatePosts = (post) => {
+        setNewPost([post, ...allPosts])
+    }
+
     // const sendPostData = () => {
     //     const thisBody = {
     //         "name": className,
@@ -160,8 +167,8 @@ export default function Class() {
     // create courses first
 
     function getData() {
+
         // Get review
-        
         var textarea = document.getElementById("review");
         setReview(textarea.value)
 
@@ -198,7 +205,49 @@ export default function Class() {
                 console.error(error.response.data);
             });
             console.log(totalData);
+
+        
       }
+
+    //   router.get("/me", auth, async (req, res) => {
+    //     try {
+    //       const course = await Course.find();
+    //       res.json(course);
+    //     } catch (e) {
+    //       res.send({ message: "Error in Fetching Course" });
+    //     }
+    //   });
+
+
+    function getClass() {
+        axios.get(URL+'/me')
+            .then(response => {
+                console.log(response.data);
+                let data = response.data
+                for (const course of data) {
+                    if (course.courseName === className) {
+                        for (const post of course.posts) {
+                            console.log(post);
+                            const {rating, semester, review, professor} = post;
+                            let p = [<Post rating={rating} semester={semester} review={review} professor={professor}></Post>]
+                            updatePosts(p);
+                        }
+                    }
+                }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    
+    //getClass();
+
+        //allPosts = Object.keys(allPosts);
+        //console.log("slay")
+        //console.log(allPosts);
+
+    const posts = allPosts.map((post) => post);
+    
 
     return (
         
@@ -242,13 +291,16 @@ export default function Class() {
             {/* value={myProfessor} onChange={e => setMyProfessor(e.target.value)*/}
             <br></br>
             <button onClick={getData}>Submit</button>
+            
             {/*<button onClick={sendPostData}>Submit</button>*/}
             
             <br></br>
             <br></br>
             <br></br>
             <br></br>
-
+            <button onClick={getClass}>Load</button>
+            {posts}
+       
             {/* we need to iterate over the posts array here to show them as it gets updated*/}
 
             {/* {posts} */}

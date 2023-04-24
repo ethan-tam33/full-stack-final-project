@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Routes, Link, useHistory, Navigate } from 'react-router-dom';
-import Login from './components/Login';
+import Login from './components/login';
 import Main from './components/Main';
 import Header from './components/Header';
 import Class from './components/Class';
@@ -20,7 +20,7 @@ function App() {
         <Route path ="/newpost" element={<NewPost />}/>
         <Route
         path="*"
-        element={<Navigate to="/login" replace />}
+        element={<Navigate to="/main" replace />}
     />
       <Route path="/class" element={<Class />} />
       </Routes>

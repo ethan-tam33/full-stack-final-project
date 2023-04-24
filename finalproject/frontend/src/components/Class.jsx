@@ -214,7 +214,7 @@ export default function Class() {
                         for (const post of course.posts) {
                             console.log(post);
                             const {rating, semester, review, professor} = post;
-                            let p = <Post rating={rating} semester={semester} review={review} professor={professor}></Post>
+                            let p = [<Post rating={rating} semester={semester} review={review} professor={professor}></Post>]
                             updatePosts(p);
                         }
                     }

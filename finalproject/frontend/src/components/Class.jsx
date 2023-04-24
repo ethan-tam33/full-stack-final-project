@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom'
 import Post from './Post'
 import axios from 'axios'
-// import styles from "../css/main.module.css"
+import '../css/post.module.css'
 
 export default function Class() {
     const [className, setClassName] = useState('')
@@ -247,35 +247,56 @@ export default function Class() {
 
             <br></br>
 
-            <h3>Your Rating: {<input id="rating" size="4"></input>} / 5</h3>
-
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <h3>Your Rating: {<input id="rating" size="4"></input>} / 5</h3>
+                </div>
+            
             {/* // <h3>Your Rating: {<input size="4" value={myRating} onChange={e => setMyRating(e.target.value)}
             // ></input>} / 5</h3>*/}
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
             <h3>Share your tips/review of the course here: </h3>
-                
-                
-            {<textarea id="review" name="review" rows="10" cols="50"></textarea>}
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
+            <textarea className="promptBox" name="review" rows="10" cols="50"></textarea>
+            </div>
             <br></br>
             <br></br>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
             <label for="semester">Choose the semeseter you took the class: </label>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
             <select name="semester" id="semester">
                 <option value="Spring 2023">Spring 2023</option>
                 <option value="Fall 2022">Fall 2022</option>
                 <option value="Spring 2022">Spring 2022</option>
                 <option value="Fall 2021">Fall 2021</option>
             </select>
+            </div>
 
             <br></br>
             <br></br>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
             <label for="professors">Choose the professor you took the class with: </label>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
             <select name="professor" id="professor">
                 {profs.map((p) => {return (<option value={p}>{p}</option>)})}
             </select>
+            </div>
+
             {/* value={myProfessor} onChange={e => setMyProfessor(e.target.value)*/}
             <br></br>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            
             <button onClick={getData}>Submit</button>
+            </div>
+
             
             {/*<button onClick={sendPostData}>Submit</button>*/}
             
@@ -283,7 +304,11 @@ export default function Class() {
             <br></br>
             <br></br>
             <br></br>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
             <button onClick={getClass}>Load</button>
+            </div>
+
             {posts}
        
             {/* we need to iterate over the posts array here to show them as it gets updated*/}

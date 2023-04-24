@@ -1,15 +1,59 @@
-.classButton {
-    background-color: white;
-    color: black;
-    font-size: 2rem;
-    border-radius: 20px;
-    width: 200px;
-    height: 50px
-}
+/* .classAll {
+    background: linear-gradient(to bottom right, #729aff 0%, #000ea7 50%, #000000 50%, #000000 100%);
+    height: 100vh;
+    position: relative;
+  } */
 
-h1 {
+.classDiv {
+    max-width: 400px; /* Set a maximum width for the container */
+    margin: 0 auto; /* Center the container horizontally */
+    margin-top: 20px;
+  }
+  
+  .link-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .classLink {
+    display: block;
+    margin: 10px 0;
+    padding: 15px 20px;
+    background-image: linear-gradient(to bottom right, #808080, #00006a);
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 7px;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    line-height: 1.5;
+    transition: background-position 0.2s ease-in-out; /* Add a CSS transition */
+    background-size: 200% 100%; /* Specify the background size */
+    background-position: left center; /* Specify the initial background position */
+  }
+  
+  .classLink:hover {
+    background-position: right center; /* Animate the background position on hover */
+    color: white;
+  }
+  
+  .classLink:active {
+    background-image: linear-gradient(to bottom right, #0a3c5d, #000000);
+    color: white;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+.classH1 {
     text-align:center;
+    border-top: 100px;
+    font-family: 'Trebuchet MS', sans-serif;
+    color: black;
+    font-size: 45px;
 }
-h2 {
+.classH2 {
     text-align:center;
+    color: black;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+    margin-top: 50px;
 }

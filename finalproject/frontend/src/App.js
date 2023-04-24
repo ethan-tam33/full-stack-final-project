@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Routes, Link, useHistory, Navigate } from 'react-router-dom';
 import Login from './components/login';
-import Main from './components/main';
-import Header from './components/header';
+import Main from './components/Main';
+import Header from './components/Header';
 import Class from './components/Class';
 import SignUp from './components/SignUp'
 import NewPost from './components/NewPost'
